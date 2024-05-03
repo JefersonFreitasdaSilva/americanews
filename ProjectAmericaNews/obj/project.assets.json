@@ -46,19 +46,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Darkus\\.nuget\\packages\\": {}
+    "C:\\Users\\Yuri Miguel\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Darkus\\source\\repos\\americanews\\ProjectAmericaNews\\ProjectAmericaNews.csproj",
+      "projectUniqueName": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\ProjectAmericaNews\\ProjectAmericaNews.csproj",
       "projectName": "ProjectAmericaNews",
-      "projectPath": "C:\\Users\\Darkus\\source\\repos\\americanews\\ProjectAmericaNews\\ProjectAmericaNews.csproj",
-      "packagesPath": "C:\\Users\\Darkus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Darkus\\source\\repos\\americanews\\ProjectAmericaNews\\obj\\",
+      "projectPath": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\ProjectAmericaNews\\ProjectAmericaNews.csproj",
+      "packagesPath": "C:\\Users\\Yuri Miguel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\ProjectAmericaNews\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Darkus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Yuri Miguel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -72,11 +77,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Darkus\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {
-              "projectPath": "C:\\Users\\Darkus\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj"
+            "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {
+              "projectPath": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj"
             },
-            "C:\\Users\\Darkus\\source\\repos\\americanews\\AmericaNews.Services\\AmericaNews.Services.csproj": {
-              "projectPath": "C:\\Users\\Darkus\\source\\repos\\americanews\\AmericaNews.Services\\AmericaNews.Services.csproj"
+            "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Services\\AmericaNews.Services.csproj": {
+              "projectPath": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Services\\AmericaNews.Services.csproj"
             }
           }
         }
@@ -85,11 +90,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -114,7 +114,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
