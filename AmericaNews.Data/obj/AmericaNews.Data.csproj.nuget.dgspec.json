@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Darkus\\Source\\Repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {}
+    "C:\\Users\\Darkus\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Darkus\\Source\\Repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {
+    "C:\\Users\\Darkus\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Darkus\\Source\\Repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj",
+        "projectUniqueName": "C:\\Users\\Darkus\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj",
         "projectName": "AmericaNews.Data",
-        "projectPath": "C:\\Users\\Darkus\\Source\\Repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj",
+        "projectPath": "C:\\Users\\Darkus\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj",
         "packagesPath": "C:\\Users\\Darkus\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Darkus\\Source\\Repos\\americanews\\AmericaNews.Data\\obj\\",
         "projectStyle": "PackageReference",
