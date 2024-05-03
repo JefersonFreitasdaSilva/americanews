@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Services\\AmericaNews.Services.csproj": {}
+    "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Services\\AmericaNews.Services.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {
+    "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj",
+        "projectUniqueName": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj",
         "projectName": "AmericaNews.Data",
-        "projectPath": "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj",
+        "projectPath": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj",
         "packagesPath": "C:\\Users\\Yuri Miguel\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Data\\obj\\",
         "projectStyle": "PackageReference",
@@ -63,12 +63,12 @@
         }
       }
     },
-    "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Services\\AmericaNews.Services.csproj": {
+    "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Services\\AmericaNews.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Services\\AmericaNews.Services.csproj",
+        "projectUniqueName": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Services\\AmericaNews.Services.csproj",
         "projectName": "AmericaNews.Services",
-        "projectPath": "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Services\\AmericaNews.Services.csproj",
+        "projectPath": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Services\\AmericaNews.Services.csproj",
         "packagesPath": "C:\\Users\\Yuri Miguel\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Services\\obj\\",
         "projectStyle": "PackageReference",
@@ -91,8 +91,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {
-                "projectPath": "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj"
+              "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {
+                "projectPath": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj"
               }
             }
           }

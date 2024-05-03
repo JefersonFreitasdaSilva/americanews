@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AmericaNews.Services
-build_property.ProjectDir = C:\Users\Yuri Miguel\Source\Repos\americanews\AmericaNews.Services\
+build_property.ProjectDir = C:\Users\Yuri Miguel\source\repos\americanews\AmericaNews.Services\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

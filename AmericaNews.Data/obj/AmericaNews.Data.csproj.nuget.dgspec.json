@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {}
+    "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {
+    "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj",
+        "projectUniqueName": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj",
         "projectName": "AmericaNews.Data",
-        "projectPath": "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj",
+        "projectPath": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Data\\AmericaNews.Data.csproj",
         "packagesPath": "C:\\Users\\Yuri Miguel\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Data\\obj\\",
         "projectStyle": "PackageReference",
