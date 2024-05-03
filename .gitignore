@@ -5,3 +5,7 @@ americanews/AmericaNews.Services/obj/Debug
 americanews/AmericaNews.Data/obj/Debug
 americanews/AmericaNews.Data/bin/Debug
 
+/.vs
+/AmericaNews.Data/obj/Release/net8.0
+/AmericaNews.Services/obj
+/ProjectAmericaNews/obj
