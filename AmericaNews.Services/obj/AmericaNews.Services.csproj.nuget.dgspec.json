@@ -70,7 +70,7 @@
         "projectName": "AmericaNews.Services",
         "projectPath": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Services\\AmericaNews.Services.csproj",
         "packagesPath": "C:\\Users\\Yuri Miguel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Yuri Miguel\\Source\\Repos\\americanews\\AmericaNews.Services\\obj\\",
+        "outputPath": "C:\\Users\\Yuri Miguel\\source\\repos\\americanews\\AmericaNews.Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
