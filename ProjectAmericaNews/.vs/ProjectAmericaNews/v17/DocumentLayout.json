@@ -1,0 +1,83 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jujuk\\OneDrive\\\u00C1rea de Trabalho\\Bia\\Projetos\\AmericaNews\\ProjectAmericaNews\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{677577C5-034B-4AFB-B370-A109EF6EBB38}|ProjectAmericaNews.csproj|c:\\users\\jujuk\\onedrive\\\u00E1rea de trabalho\\bia\\projetos\\americanews\\projectamericanews\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{677577C5-034B-4AFB-B370-A109EF6EBB38}|ProjectAmericaNews.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{677577C5-034B-4AFB-B370-A109EF6EBB38}|ProjectAmericaNews.csproj|c:\\users\\jujuk\\onedrive\\\u00E1rea de trabalho\\bia\\projetos\\americanews\\projectamericanews\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{677577C5-034B-4AFB-B370-A109EF6EBB38}|ProjectAmericaNews.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jujuk\\OneDrive\\\u00C1rea de Trabalho\\Bia\\Projetos\\AmericaNews.Services\\HomeService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jujuk\\OneDrive\\\u00C1rea de Trabalho\\Bia\\Projetos\\AmericaNews.Data\\HomeRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\jujuk\\OneDrive\\\u00C1rea de Trabalho\\Bia\\Projetos\\AmericaNews\\ProjectAmericaNews\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\jujuk\\OneDrive\\\u00C1rea de Trabalho\\Bia\\Projetos\\AmericaNews\\ProjectAmericaNews\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABMAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T01:46:27.192Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\jujuk\\OneDrive\\\u00C1rea de Trabalho\\Bia\\Projetos\\AmericaNews\\ProjectAmericaNews\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\jujuk\\OneDrive\\\u00C1rea de Trabalho\\Bia\\Projetos\\AmericaNews\\ProjectAmericaNews\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-03T01:45:12.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeService.cs",
+              "DocumentMoniker": "C:\\Users\\jujuk\\OneDrive\\\u00C1rea de Trabalho\\Bia\\Projetos\\AmericaNews.Services\\HomeService.cs",
+              "RelativeDocumentMoniker": "..\\..\\AmericaNews.Services\\HomeService.cs",
+              "ToolTip": "C:\\Users\\jujuk\\OneDrive\\\u00C1rea de Trabalho\\Bia\\Projetos\\AmericaNews.Services\\HomeService.cs",
+              "RelativeToolTip": "..\\..\\AmericaNews.Services\\HomeService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T01:45:03.837Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HomeRepository.cs",
+              "DocumentMoniker": "C:\\Users\\jujuk\\OneDrive\\\u00C1rea de Trabalho\\Bia\\Projetos\\AmericaNews.Data\\HomeRepository.cs",
+              "RelativeDocumentMoniker": "..\\..\\AmericaNews.Data\\HomeRepository.cs",
+              "ToolTip": "C:\\Users\\jujuk\\OneDrive\\\u00C1rea de Trabalho\\Bia\\Projetos\\AmericaNews.Data\\HomeRepository.cs",
+              "RelativeToolTip": "..\\..\\AmericaNews.Data\\HomeRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T01:44:34.686Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

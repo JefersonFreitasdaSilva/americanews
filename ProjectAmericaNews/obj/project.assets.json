@@ -1,0 +1,121 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "AmericaNews.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/AmericaNews.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AmericaNews.Data.dll": {}
+        }
+      },
+      "AmericaNews.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "AmericaNews.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AmericaNews.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AmericaNews.Services.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AmericaNews.Data/1.0.0": {
+      "type": "project",
+      "path": "../AmericaNews.Data/AmericaNews.Data.csproj",
+      "msbuildProject": "../AmericaNews.Data/AmericaNews.Data.csproj"
+    },
+    "AmericaNews.Services/1.0.0": {
+      "type": "project",
+      "path": "../AmericaNews.Services/AmericaNews.Services.csproj",
+      "msbuildProject": "../AmericaNews.Services/AmericaNews.Services.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "AmericaNews.Data >= 1.0.0",
+      "AmericaNews.Services >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\jujuk\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\jujuk\\OneDrive\\Área de Trabalho\\Bia\\Projetos\\AmericaNews\\ProjectAmericaNews\\ProjectAmericaNews.csproj",
+      "projectName": "ProjectAmericaNews",
+      "projectPath": "C:\\Users\\jujuk\\OneDrive\\Área de Trabalho\\Bia\\Projetos\\AmericaNews\\ProjectAmericaNews\\ProjectAmericaNews.csproj",
+      "packagesPath": "C:\\Users\\jujuk\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jujuk\\OneDrive\\Área de Trabalho\\Bia\\Projetos\\AmericaNews\\ProjectAmericaNews\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\jujuk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "C:\\Users\\jujuk\\OneDrive\\Área de Trabalho\\Bia\\Projetos\\AmericaNews\\AmericaNews.Data\\AmericaNews.Data.csproj": {
+              "projectPath": "C:\\Users\\jujuk\\OneDrive\\Área de Trabalho\\Bia\\Projetos\\AmericaNews\\AmericaNews.Data\\AmericaNews.Data.csproj"
+            },
+            "C:\\Users\\jujuk\\OneDrive\\Área de Trabalho\\Bia\\Projetos\\AmericaNews\\AmericaNews.Services\\AmericaNews.Services.csproj": {
+              "projectPath": "C:\\Users\\jujuk\\OneDrive\\Área de Trabalho\\Bia\\Projetos\\AmericaNews\\AmericaNews.Services\\AmericaNews.Services.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
