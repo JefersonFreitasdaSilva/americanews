@@ -22,3 +22,5 @@ americanews/AmericaNews.Data/bin/Debug
 /ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.AssemblyInfoInputs.cache
 /ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.csproj.AssemblyReference.cache
 /ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.GeneratedMSBuildEditorConfig.editorconfig
+/.vs/americanews/v17/DocumentLayout.json
+/.gitignore
