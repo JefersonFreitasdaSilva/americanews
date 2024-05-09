@@ -75,3 +75,4 @@ msbuild.wrn
 /ProjectAmericaNews/obj/project.nuget.cache
 /ProjectAmericaNews/obj/ProjectAmericaNews.csproj.nuget.dgspec.json
 /ProjectAmericaNews/obj/ProjectAmericaNews.csproj.nuget.g.props
+/AmericaNews.Data/obj/Debug/net8.0/ref/AmericaNews.Data.dll
