@@ -1,26 +1,39 @@
-americanews/ProjectAmericaNews/obj/Debug
-americanews/ProjectAmericaNews/bin/Debug
-americanews/AmericaNews.Services/bin/Debug
-americanews/AmericaNews.Services/obj/Debug
-americanews/AmericaNews.Data/obj/Debug
-americanews/AmericaNews.Data/bin/Debug
+# From .NET Core 3.0 you can use the command: `dotnet new gitignore` to generate a customizable .gitignore file
 
-/.vs
-/AmericaNews.Data/obj/Release/net8.0
-/AmericaNews.Services/obj
-/ProjectAmericaNews/obj
-/.vs/americanews/v17/DocumentLayout.json
-/.vs/VSWorkspaceState.json
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+
+# Visual Studio Code
+.vscode
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Visual Studio 2015
+.vs/
+/ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.AssemblyInfo.cs
+/ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.csproj.AssemblyReference.cache
+/ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.AssemblyInfoInputs.cache
+/ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.GeneratedMSBuildEditorConfig.editorconfig
 /.vs/americanews/v17/.wsuo
-/.vs/VSWorkspaceState.json
-/.vs/VSWorkspaceState.json
-/ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.AssemblyInfo.cs
-/ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.AssemblyInfoInputs.cache
-/ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.csproj.AssemblyReference.cache
-/ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.GeneratedMSBuildEditorConfig.editorconfig
-/ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.AssemblyInfo.cs
-/ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.AssemblyInfoInputs.cache
-/ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.csproj.AssemblyReference.cache
-/ProjectAmericaNews/obj/Debug/net8.0/ProjectAmericaNews.GeneratedMSBuildEditorConfig.editorconfig
-/.vs/americanews/v17/DocumentLayout.json
-/.gitignore
