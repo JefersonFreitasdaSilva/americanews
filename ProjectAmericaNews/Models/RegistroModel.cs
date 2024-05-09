@@ -23,6 +23,6 @@ public class Registro
 
     public override string ToString()
     {
-        return $"ID: {ID}, Tabela: {Tabela}, Coluna: {Coluna}, Antes: {Antes}, Depois: {Depois}, Data: {Data}"
+        return $"ID: {ID}, Tabela: {Tabela}, Coluna: {Coluna}, Antes: {Antes}, Depois: {Depois}, Data: {Data}";
     }
 }

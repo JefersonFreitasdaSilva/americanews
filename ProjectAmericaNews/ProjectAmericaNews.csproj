@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AmericaNews.Data\AmericaNews.Data.csproj" />
     <ProjectReference Include="..\AmericaNews.Services\AmericaNews.Services.csproj" />
   </ItemGroup>
