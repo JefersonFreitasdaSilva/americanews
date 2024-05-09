@@ -1,9 +1,7 @@
-ï»¿using System;
+using System;
 
 public class Noticia
 {
-    public class NoticiaModel
-    {
     public int ID { get; set; }
     public string Titulo { get; set; }
     public string? Subtitulo { get; set; }
@@ -34,6 +32,6 @@ public class Noticia
         string admAprovouInfo = ID_ADM_Aprovou != 0 ? ID_ADM_Aprovou.ToString() : "N/A";
         string dataAprovadaInfo = DataAprovada.HasValue ? DataAprovada.Value.ToString() : "N/A";
 
-        return $"ID: {ID}, Tï¿½tulo: {Titulo}, Subtï¿½tulo: {Subtitulo}, Texto: {Texto}, Data: {Data}, Ocultar: {Ocultar}, IDUsuario: {IDUsuario}, ID_ADM_Aprovou: {admAprovouInfo}, DataAprovada: {dataAprovadaInfo}";
+        return $"ID: {ID}, Título: {Titulo}, Subtítulo: {Subtitulo}, Texto: {Texto}, Data: {Data}, Ocultar: {Ocultar}, IDUsuario: {IDUsuario}, ID_ADM_Aprovou: {admAprovouInfo}, DataAprovada: {dataAprovadaInfo}";
     }
 }
