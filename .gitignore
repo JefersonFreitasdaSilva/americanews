@@ -396,3 +396,13 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/AmericaNews.Data/obj/Debug/net8.0/AmericaNews.Data.assets.cache
+/AmericaNews.Data/obj/AmericaNews.Data.csproj.nuget.dgspec.json
+/AmericaNews.Data/obj/project.assets.json
+/AmericaNews.Data/obj/project.nuget.cache
+/AmericaNews.Services/obj/project.assets.json
+/AmericaNews.Services/obj/AmericaNews.Services.csproj.nuget.dgspec.json
+/AmericaNews.Services/obj/project.nuget.cache
+/ProjectAmericaNews/obj/project.assets.json
+/ProjectAmericaNews/obj/project.nuget.cache
+/ProjectAmericaNews/obj/ProjectAmericaNews.csproj.nuget.dgspec.json
