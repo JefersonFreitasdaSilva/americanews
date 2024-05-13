@@ -1,6 +1,6 @@
 using System;
 
-public class Comentario
+public class ComentarioModel
 {
     public int ID { get; set; }
     public string Texto { get; set; }
@@ -11,10 +11,10 @@ public class Comentario
     public int? ID_ADM_Reprovou { get; set; }
     public DateTime? DataReprovado { get; set; }
 
-    public Comentario()
+    public ComentarioModel()
     { }
 
-    public Comentario(string texto, bool? ocultar, int idUsuario, int idNoticia, DateTime data, int? idAdmReprovou, DateTime? dataReprovado)
+    public ComentarioModel(string texto, bool? ocultar, int idUsuario, int idNoticia, DateTime data, int? idAdmReprovou, DateTime? dataReprovado)
     {
         Texto = texto;
         Ocultar = ocultar;

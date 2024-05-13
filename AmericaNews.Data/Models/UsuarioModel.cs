@@ -1,6 +1,6 @@
 using System;
 
-public class Usuario
+public class UsuarioModel
 {
     public int ID { get; set; }
     public string Nome { get; set; }
@@ -11,10 +11,10 @@ public class Usuario
     public string EmailCorporativo { get; set; }
     public int NivelPermissao { get; set; }
 
-    public Usuario()
+    public UsuarioModel()
     { }
 
-    public Usuario(string nome, string? telefone, string? email, string? endereco, DateTime data, string emailCorporativo, int nivelPermissao)
+    public UsuarioModel(string nome, string? telefone, string? email, string? endereco, DateTime data, string emailCorporativo, int nivelPermissao)
     {
         Nome = nome;
         Telefone = telefone;

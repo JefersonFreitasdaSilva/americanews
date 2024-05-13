@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 
 namespace AmericaNews.Data
 {
     public class HomeRepository
     {
+        private string? _connectionString { get; set; }
+
+        public HomeRepository()
+        {
+            _connectionString = Connection.GetConnectionString();
+        }
+
         public string GetTitulo()
         {
-            // TODO: Substitua as credenciais abaixo pelas suas credenciais pessoais para testar localmente
-            string connectionString = "Data Source=DESKTOP-Q0ODSD0\\SQLEXPRESS;Initial Catalog=AMERICANEWS;Integrated Security=True";
-
             string primeiroTitulo = null;
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 try
                 {
@@ -48,6 +50,8 @@ namespace AmericaNews.Data
 
                             noticias.Add(noticia);
                         }
+
+                        connection.Close();
 
                         // Obter o título do primeiro item
                         if (noticias.Count > 0)

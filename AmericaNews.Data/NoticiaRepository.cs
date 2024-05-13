@@ -1,12 +1,135 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AmericaNews.Data.Interfaces;
+using System.Data.SqlClient;
 
 namespace AmericaNews.Data
 {
-    public class NoticiaRepository
+    public class NoticiaRepository : INoticiaRepository
     {
+        private string? _connectionString { get; set; }
+
+        public NoticiaRepository()
+        {
+            _connectionString = Connection.GetConnectionString();
+        }
+
+        private List<NoticiaModel> ExecuteSelectCommands(string sql)
+        {
+            List<NoticiaModel> noticias = new List<NoticiaModel>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        NoticiaModel noticia = new NoticiaModel
+                        {
+                            ID = Convert.ToInt32(reader["ID"]),
+                            Titulo = reader["Titulo"].ToString(),
+                            Subtitulo = reader["Subtitulo"].ToString(),
+                            Texto = reader["Texto"].ToString(),
+                            Data = Convert.ToDateTime(reader["Data"]),
+                            Ocultar = Convert.ToBoolean(reader["Ocultar"]),
+                            IDUsuario = Convert.ToInt32(reader["IDUsuario"]),
+                            ID_ADM_Aprovou = reader["ID_ADM_Aprovou"] != DBNull.Value ? Convert.ToInt32(reader["ID_ADM_Aprovou"]) : (int?)null,
+                            DataAprovada = reader["DataAprovada"] != DBNull.Value ? Convert.ToDateTime(reader["DataAprovada"]) : (DateTime?)null
+                        };
+
+                        noticias.Add(noticia);
+                    }
+
+                    connection.Close();
+                }
+            }
+
+            return noticias;
+        }
+
+        public List<NoticiaModel> GetAll()
+        {
+            try
+            {
+                string sql = "SELECT * FROM Noticia";
+                var noticias = ExecuteSelectCommands(sql);
+
+                return noticias;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format("Ocorreu um erro ao buscar todas as notícias no banco de dados: {0}", ex.Message));
+                throw;
+            }
+        }
+
+        public List<NoticiaModel> GetAllByStatus(int status)
+        {
+            try
+            {  
+                string sql = "SELECT * FROM Noticia WHERE Ocultar = " + status;
+                var noticias = ExecuteSelectCommands(sql);  
+
+                return noticias;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format("Ocorreu um erro ao buscar todas as notícias do status {0} no banco de dados: {1}", status, ex.Message));
+                throw;
+            }
+        }
+
+        public NoticiaModel? GetById(int id)
+        {
+            try
+            {
+                string sql = "SELECT * FROM Noticia WHERE ID = " + id;
+                var noticias = ExecuteSelectCommands(sql);
+
+                return noticias.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format("Ocorreu um erro ao buscar a notícia de ID {0} no banco de dados: {1}", id, ex.Message));
+                throw;
+            }
+        }
+
+        public void Insert(NoticiaModel noticia)
+        {
+            try
+            {
+                string sql = string.Format("INSERT INTO Noticia(Titulo, Subtitulo, Texto, qData, Ocultar, IDUsuario, ID_ADM_Aprovou, DataAprovada) " +
+                    "VALUES({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})",
+                    noticia.Titulo, noticia.Subtitulo, noticia.Texto, noticia.Data, noticia.Ocultar,
+                    noticia.IDUsuario, noticia.ID_ADM_Aprovou, noticia.DataAprovada);
+
+                Connection.ExecuteCommands(sql, _connectionString);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format("Ocorreu um erro ao cadastrar a noticia no banco de dados: {0}", ex.Message));
+                throw;
+            }
+        }
+
+        public void UpdateStatus(NoticiaModel noticia)
+        {
+            try
+            {
+                string sql = string.Format("UPDATE Noticia SET Ocultar = {0}, ID_ADM_Aprovou = {1}, DataAprovada = {2}" +
+                                           "WHERE ID = {3}",
+                    noticia.Ocultar, noticia.ID_ADM_Aprovou, noticia.DataAprovada, noticia.ID);
+
+                Connection.ExecuteCommands(sql, _connectionString);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format("Ocorreu um erro ao cadastrar a noticia no banco de dados: {0}", ex.Message));
+                throw;
+            }
+        }
     }
 }
