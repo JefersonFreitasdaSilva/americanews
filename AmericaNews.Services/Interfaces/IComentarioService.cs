@@ -1,6 +1,6 @@
 ﻿namespace AmericaNews.Services.Interfaces
 {
-    public interface IComentarioServices
+    public interface IComentarioService
     {
         public List<ComentarioModel> GetAllByNoticia(int idNoticia);
         public List<ComentarioModel> GetAllByStatus(int status);

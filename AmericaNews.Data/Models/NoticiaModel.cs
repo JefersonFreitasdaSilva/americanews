@@ -6,8 +6,9 @@ public class NoticiaModel
     public string Titulo { get; set; }
     public string? Subtitulo { get; set; }
     public string Texto { get; set; }
+    public string LinkIMG { get; set; }
     public DateTime Data { get; set; }
-    public bool? Ocultar { get; set; }
+    public int Status { get; set; }
     public int IDUsuario { get; set; }
     public int? ID_ADM_Aprovou { get; set; }
     public DateTime? DataAprovada { get; set; }
@@ -15,13 +16,13 @@ public class NoticiaModel
     public NoticiaModel()
     { }
 
-    public NoticiaModel(string titulo, string? subtitulo, string texto, DateTime data, bool? ocultar, int idUsuario, int? idAdmAprovou, DateTime? dataAprovada)
+    public NoticiaModel(string titulo, string? subtitulo, string texto, DateTime data, int status, int idUsuario, int? idAdmAprovou, DateTime? dataAprovada)
     {   
         Titulo = titulo;
         Subtitulo = subtitulo;
         Texto = texto;
         Data = data;
-        Ocultar = ocultar;
+        Status = status;
         IDUsuario = idUsuario;
         ID_ADM_Aprovou = idAdmAprovou;
         DataAprovada = dataAprovada;
@@ -32,6 +33,6 @@ public class NoticiaModel
         string admAprovouInfo = ID_ADM_Aprovou != 0 ? ID_ADM_Aprovou.ToString() : "N/A";
         string dataAprovadaInfo = DataAprovada.HasValue ? DataAprovada.Value.ToString() : "N/A";
 
-        return $"ID: {ID}, Título: {Titulo}, Subtítulo: {Subtitulo}, Texto: {Texto}, Data: {Data}, Ocultar: {Ocultar}, IDUsuario: {IDUsuario}, ID_ADM_Aprovou: {admAprovouInfo}, DataAprovada: {dataAprovadaInfo}";
+        return $"ID: {ID}, Título: {Titulo}, Subtítulo: {Subtitulo}, Texto: {Texto}, Data: {Data}, Status: {Status}, IDUsuario: {IDUsuario}, ID_ADM_Aprovou: {admAprovouInfo}, DataAprovada: {dataAprovadaInfo}";
     }
 }

@@ -4,7 +4,7 @@ public class ComentarioModel
 {
     public int ID { get; set; }
     public string Texto { get; set; }
-    public bool? Ocultar { get; set; }
+    public int Status { get; set; }
     public int IDUsuario { get; set; }
     public int IDNoticia { get; set; }
     public DateTime Data { get; set; }
@@ -14,10 +14,10 @@ public class ComentarioModel
     public ComentarioModel()
     { }
 
-    public ComentarioModel(string texto, bool? ocultar, int idUsuario, int idNoticia, DateTime data, int? idAdmReprovou, DateTime? dataReprovado)
+    public ComentarioModel(string texto, int status, int idUsuario, int idNoticia, DateTime data, int? idAdmReprovou, DateTime? dataReprovado)
     {
         Texto = texto;
-        Ocultar = ocultar;
+        Status = status;
         IDUsuario = idUsuario;
         IDNoticia = idNoticia;
         Data = data;
@@ -30,6 +30,6 @@ public class ComentarioModel
         string admReprovouInfo = ID_ADM_Reprovou != 0 ? ID_ADM_Reprovou.ToString() : "N/A";
         string dataReprovadoInfo = DataReprovado.HasValue ? DataReprovado.Value.ToString() : "N/A";
 
-        return $"ID: {ID}, Texto: {Texto}, Ocultar: {Ocultar}, IDUsuario: {IDUsuario}, IDNoticia: {IDNoticia}, Data: {Data}, ID_ADM_Reprovou: {admReprovouInfo}, DataReprovado: {dataReprovadoInfo}";
+        return $"ID: {ID}, Texto: {Texto}, Status: {Status}, IDUsuario: {IDUsuario}, IDNoticia: {IDNoticia}, Data: {Data}, ID_ADM_Reprovou: {admReprovouInfo}, DataReprovado: {dataReprovadoInfo}";
     }
 }

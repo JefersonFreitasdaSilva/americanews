@@ -32,7 +32,7 @@ namespace AmericaNews.Data
                             ID = Convert.ToInt32(reader["ID"]),
                             Texto = reader["Texto"].ToString(),
                             Data = Convert.ToDateTime(reader["qData"]),
-                            Ocultar = Convert.ToBoolean(reader["Ocultar"]),
+                            Status = Convert.ToInt32(reader["Status"]),
                             IDUsuario = Convert.ToInt32(reader["IDUsuario"]),
                             IDNoticia = Convert.ToInt32(reader["IDNoticia"]),
                             ID_ADM_Reprovou = reader["ID_ADM_Reprovou"] != DBNull.Value ? Convert.ToInt32(reader["ID_ADM_Reprovou"]) : (int?)null,
@@ -69,7 +69,7 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = "SELECT * FROM Comentario WHERE Ocultar = " + status;
+                string sql = "SELECT * FROM Comentario WHERE Status = " + status;
                 var comentarios = ExecuteSelectCommands(sql);
 
                 return comentarios;
@@ -101,9 +101,9 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = string.Format("INSERT INTO Comentario(Texto, Ocultar, IDUsuario, IDNoticia, qData, ID_ADM_Reprovou, DataReprovado) " +
+                string sql = string.Format("INSERT INTO Comentario(Texto, status, IDUsuario, IDNoticia, qData, ID_ADM_Reprovou, DataReprovado) " +
                     "VALUES({0}, {1}, {2}, {3}, {4}, {5}, {6}",
-                    comentario.Texto, comentario.Ocultar, comentario.IDUsuario, comentario.IDNoticia, 
+                    comentario.Texto, comentario.Status, comentario.IDUsuario, comentario.IDNoticia, 
                     comentario.Data, comentario.ID_ADM_Reprovou, comentario.DataReprovado);
 
                 Connection.ExecuteCommands(sql, _connectionString);
@@ -119,9 +119,9 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = string.Format("UPDATE Comentario SET Ocultar = {0}, ID_ADM_Reprovou  = {1}, DataReprovado = {2}" +
+                string sql = string.Format("UPDATE Comentario SET status = {0}, ID_ADM_Reprovou  = {1}, DataReprovado = {2}" +
                                            "WHERE ID = {3}",
-                    comentario.Ocultar, comentario.ID_ADM_Reprovou, comentario.DataReprovado, comentario.ID);
+                    comentario.Status, comentario.ID_ADM_Reprovou, comentario.DataReprovado, comentario.ID);
 
                 Connection.ExecuteCommands(sql, _connectionString);
             }

@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectAmericaNews", "ProjectAmericaNews.csproj", "{677577C5-034B-4AFB-B370-A109EF6EBB38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmericaNews.Data", "..\AmericaNews.Data\AmericaNews.Data.csproj", "{07E4F77B-E429-435F-BA72-58EBAAC350D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmericaNews.Data", "..\AmericaNews.Data\AmericaNews.Data.csproj", "{07E4F77B-E429-435F-BA72-58EBAAC350D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmericaNews.Services", "..\AmericaNews.Services\AmericaNews.Services.csproj", "{8664BC43-B129-4AE0-B879-4FD312ABE439}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmericaNews.Services", "..\AmericaNews.Services\AmericaNews.Services.csproj", "{8664BC43-B129-4AE0-B879-4FD312ABE439}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmericaNews.Api", "..\AmericaNews.Api\AmericaNews.Api.csproj", "{8622FF5B-D9C9-49F6-B622-69E51EC36D8C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{07E4F77B-E429-435F-BA72-58EBAAC350D2} = {07E4F77B-E429-435F-BA72-58EBAAC350D2}
+		{8664BC43-B129-4AE0-B879-4FD312ABE439} = {8664BC43-B129-4AE0-B879-4FD312ABE439}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{677577C5-034B-4AFB-B370-A109EF6EBB38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{677577C5-034B-4AFB-B370-A109EF6EBB38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{677577C5-034B-4AFB-B370-A109EF6EBB38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{677577C5-034B-4AFB-B370-A109EF6EBB38}.Release|Any CPU.Build.0 = Release|Any CPU
 		{07E4F77B-E429-435F-BA72-58EBAAC350D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{07E4F77B-E429-435F-BA72-58EBAAC350D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07E4F77B-E429-435F-BA72-58EBAAC350D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +27,10 @@ Global
 		{8664BC43-B129-4AE0-B879-4FD312ABE439}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8664BC43-B129-4AE0-B879-4FD312ABE439}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8664BC43-B129-4AE0-B879-4FD312ABE439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8622FF5B-D9C9-49F6-B622-69E51EC36D8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8622FF5B-D9C9-49F6-B622-69E51EC36D8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8622FF5B-D9C9-49F6-B622-69E51EC36D8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8622FF5B-D9C9-49F6-B622-69E51EC36D8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

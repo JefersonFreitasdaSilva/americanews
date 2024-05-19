@@ -30,10 +30,11 @@ namespace AmericaNews.Data
                         {
                             ID = Convert.ToInt32(reader["ID"]),
                             Titulo = reader["Titulo"].ToString(),
+                            LinkIMG = reader["LinkIMG"].ToString(),
                             Subtitulo = reader["Subtitulo"].ToString(),
                             Texto = reader["Texto"].ToString(),
                             Data = Convert.ToDateTime(reader["Data"]),
-                            Ocultar = Convert.ToBoolean(reader["Ocultar"]),
+                            Status = Convert.ToInt32(reader["Status"]),
                             IDUsuario = Convert.ToInt32(reader["IDUsuario"]),
                             ID_ADM_Aprovou = reader["ID_ADM_Aprovou"] != DBNull.Value ? Convert.ToInt32(reader["ID_ADM_Aprovou"]) : (int?)null,
                             DataAprovada = reader["DataAprovada"] != DBNull.Value ? Convert.ToDateTime(reader["DataAprovada"]) : (DateTime?)null
@@ -101,9 +102,9 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = string.Format("INSERT INTO Noticia(Titulo, Subtitulo, Texto, qData, Ocultar, IDUsuario, ID_ADM_Aprovou, DataAprovada) " +
+                string sql = string.Format("INSERT INTO Noticia(Titulo, Subtitulo, Texto, qData, Status, IDUsuario, ID_ADM_Aprovou, DataAprovada) " +
                     "VALUES({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})",
-                    noticia.Titulo, noticia.Subtitulo, noticia.Texto, noticia.Data, noticia.Ocultar,
+                    noticia.Titulo, noticia.Subtitulo, noticia.Texto, noticia.Data, noticia.Status,
                     noticia.IDUsuario, noticia.ID_ADM_Aprovou, noticia.DataAprovada);
 
                 Connection.ExecuteCommands(sql, _connectionString);
@@ -119,9 +120,9 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = string.Format("UPDATE Noticia SET Ocultar = {0}, ID_ADM_Aprovou = {1}, DataAprovada = {2}" +
+                string sql = string.Format("UPDATE Noticia SET Status = {0}, ID_ADM_Aprovou = {1}, DataAprovada = {2}" +
                                            "WHERE ID = {3}",
-                    noticia.Ocultar, noticia.ID_ADM_Aprovou, noticia.DataAprovada, noticia.ID);
+                    noticia.Status, noticia.ID_ADM_Aprovou, noticia.DataAprovada, noticia.ID);
 
                 Connection.ExecuteCommands(sql, _connectionString);
             }

@@ -1,4 +1,5 @@
 ﻿using AmericaNews.Data.Interfaces;
+using AmericaNews.Data.Models;
 using System.Data.SqlClient;
 
 namespace AmericaNews.Data
@@ -30,6 +31,7 @@ namespace AmericaNews.Data
                         {
                             ID = Convert.ToInt32(reader["ID"]),
                             Nome = reader["Nome"].ToString(),
+                            Senha = reader["Senha"].ToString(),
                             Telefone = reader["Telefone"].ToString(),
                             Email = reader["Email"].ToString(),
                             EmailCorporativo = reader["EmailCorporativo"].ToString(),
@@ -64,6 +66,22 @@ namespace AmericaNews.Data
             }
         }
 
+        public UsuarioModel? GetAdminById(int id)
+        {
+            try
+            {
+                string sql = string.Format("SELECT * FROM Usuario WHERE NivelPermissao = {0} AND ID = {1}", EnumNivelPermissao.Admin, id);
+                var usuarios = ExecuteSelectCommands(sql);
+
+                return usuarios.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format("Ocorreu um erro ao buscar o admin de ID {0} no banco de dados: {1}", id, ex.Message));
+                throw;
+            }
+        }
+
         public UsuarioModel? GetByCredentials(string email, string senha)
         {
             try
@@ -84,9 +102,9 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = string.Format("INSERT INTO Usuario(Nome, Telefone, Email, Endereco, qData, EmailCorporativo, NivelPermissao) " +
+                string sql = string.Format("INSERT INTO Usuario(Nome, Telefone, Email, Senha, Endereco, qData, EmailCorporativo, NivelPermissao) " +
                     "VALUES({0}, {1}, {2}, {3}, {4}, {5}, {6})",
-                    usuario.Nome, usuario.Telefone, usuario.Email, usuario.Endereco, usuario.Data, 
+                    usuario.Nome, usuario.Telefone, usuario.Email, usuario.Senha, usuario.Endereco, usuario.Data, 
                     usuario.EmailCorporativo, usuario.NivelPermissao);
 
                 Connection.ExecuteCommands(sql, _connectionString);

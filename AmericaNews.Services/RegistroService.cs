@@ -25,7 +25,19 @@ namespace AmericaNews.Services
 
         public RegistroModel? GetById(int id)
         {
-            return _registroRepository.GetById(id);
+            try { 
+                var registro = _registroRepository.GetById(id);
+
+                if (registro == null)
+                    throw new KeyNotFoundException(string.Format("O registro de ID {0} não foi encontrado!", id));
+
+                return registro;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format("Ocorreu um erro buscar o registro de ID {0}. Detalhes: {1}", id, ex.Message));
+                throw;
+            }
         }
 
         public void Insert(RegistroModel registro)
