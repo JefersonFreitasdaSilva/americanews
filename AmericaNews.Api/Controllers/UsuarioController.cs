@@ -18,13 +18,14 @@ namespace AmericaNews.Api.Controllers
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IUsuarioService _usuarioService;
 
-        #endregion
-
         public UsuarioController(IUsuarioRepository usuarioRepository, IUsuarioService usuarioService)
         {
             _usuarioRepository = usuarioRepository;
             _usuarioService = usuarioService;
         }
+
+        #endregion
+
 
         [HttpPost("login")]
         public async Task<ActionResult<UsuarioModel>> LogIn([FromBody] LoginRequest loginRequest)
@@ -55,7 +56,7 @@ namespace AmericaNews.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<UsuarioModel>> Insert([FromBody] Usuario usuario)
+        public ActionResult<UsuarioModel> Insert([FromBody] Usuario usuario)
         {
             try
             {

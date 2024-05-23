@@ -18,7 +18,7 @@ namespace AmericaNews.Services
         {
             try
             {
-                var usuario = _usuarioRepository.GetByCredentials(email, senha);
+                var usuario = await _usuarioRepository.GetByCredentials(email, senha);
 
                 if (usuario == null)
                     throw new KeyNotFoundException(string.Format("O usuário com as seguintes credenciais não foi encontrado! Email: {0}  Senha {1}", email, senha));

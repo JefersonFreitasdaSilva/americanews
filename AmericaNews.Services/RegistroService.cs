@@ -18,15 +18,21 @@ namespace AmericaNews.Services
             _registroRepository = registroRepository;
         }
 
-        public List<RegistroModel> GetAll()
+        public async Task<List<RegistroModel>> GetAll()
         {
-            return _registroRepository.GetAll();
+            var registros = await _registroRepository.GetAll();
+
+            if (registros == null || !registros.Any())
+                throw new KeyNotFoundException("Nenhuma registro foi encontrada!");
+
+            return registros;
+
         }
 
-        public RegistroModel? GetById(int id)
+        public async Task<RegistroModel> GetById(int id)
         {
             try { 
-                var registro = _registroRepository.GetById(id);
+                var registro = await _registroRepository.GetById(id);
 
                 if (registro == null)
                     throw new KeyNotFoundException(string.Format("O registro de ID {0} não foi encontrado!", id));

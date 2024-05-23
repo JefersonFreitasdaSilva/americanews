@@ -50,12 +50,14 @@ namespace AmericaNews.Data
             return noticias;
         }
 
-        public List<NoticiaModel> GetAll()
+        public Task<List<NoticiaModel>> GetAll()
         {
             try
             {
                 string sql = "SELECT * FROM Noticia";
-                var noticias = ExecuteSelectCommands(sql);
+                var result = ExecuteSelectCommands(sql);
+
+                Task<List<NoticiaModel>> noticias = Task.FromResult(result);
 
                 return noticias;
             }
@@ -66,12 +68,14 @@ namespace AmericaNews.Data
             }
         }
 
-        public List<NoticiaModel> GetAllByStatus(int status)
+        public Task<List<NoticiaModel>> GetAllByStatus(int status)
         {
             try
             {  
                 string sql = "SELECT * FROM Noticia WHERE Ocultar = " + status;
-                var noticias = ExecuteSelectCommands(sql);  
+                var result = ExecuteSelectCommands(sql);
+
+                Task<List<NoticiaModel>> noticias = Task.FromResult(result);
 
                 return noticias;
             }
@@ -82,14 +86,16 @@ namespace AmericaNews.Data
             }
         }
 
-        public NoticiaModel? GetById(int id)
+        public Task<NoticiaModel?> GetById(int id)
         {
             try
             {
                 string sql = "SELECT * FROM Noticia WHERE ID = " + id;
-                var noticias = ExecuteSelectCommands(sql);
+                var result = ExecuteSelectCommands(sql);
 
-                return noticias.FirstOrDefault();
+                Task<NoticiaModel?> noticia = Task.FromResult(result.FirstOrDefault());
+
+                return noticia;
             }
             catch (Exception ex)
             {

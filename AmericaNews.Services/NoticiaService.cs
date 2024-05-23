@@ -17,21 +17,31 @@ namespace AmericaNews.Services
             _usuarioService = usuarioService;
         }
 
-        public List<NoticiaModel> GetAll()
+        public async Task<List<NoticiaModel>> GetAll()
         {
-            return _noticiaRepository.GetAll();
+            var noticias = await _noticiaRepository.GetAll();
+
+            if (noticias == null || !noticias.Any())
+                throw new KeyNotFoundException("Nenhuma notícia foi encontrada!");
+
+            return noticias;
         }
 
-        public List<NoticiaModel> GetAllByStatus(int status)
+        public async Task<List<NoticiaModel>> GetAllByStatus(int status)
         {
-            return _noticiaRepository.GetAllByStatus(status);
+            var noticias = await _noticiaRepository.GetAllByStatus(status);
+
+            if (noticias == null || !noticias.Any())
+                throw new KeyNotFoundException(string.Format("Nenhuma notícia com o status {0} foi encontrada!", status));
+
+            return noticias;
         }
 
-        public NoticiaModel? GetById(int id)
+        public async Task<NoticiaModel> GetById(int id)
         {
             try
             {
-                var noticia = _noticiaRepository.GetById(id);
+                var noticia = await _noticiaRepository.GetById(id);
 
                 if (noticia == null)
                     throw new KeyNotFoundException(string.Format("A Notícia de ID {0} não foi encontrada!", id));
@@ -90,12 +100,13 @@ namespace AmericaNews.Services
             }
         }
 
-        public void UpdateStatus(int idNoticia, int newStatus, int idAdmin)
+        public async void UpdateStatus(int idNoticia, int newStatus, int idAdmin)
         {
             try
             {
-                var noticia = _noticiaRepository.GetById(idNoticia);
-               
+                var result = _noticiaRepository.GetById(idNoticia);
+                var noticia = await result;
+
                 if (noticia == null)
                     throw new KeyNotFoundException(string.Format("A notícia de ID {0} não foi encontrada!", idNoticia));
 

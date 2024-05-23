@@ -82,14 +82,16 @@ namespace AmericaNews.Data
             }
         }
 
-        public UsuarioModel? GetByCredentials(string email, string senha)
+        public Task<UsuarioModel?> GetByCredentials(string email, string senha)
         {
             try
             {
                 string sql = string.Format("SELECT * FROM Usuario WHERE Email = {0} AND Senha = {1}", email, senha);
                 var usuarios = ExecuteSelectCommands(sql);
 
-                return usuarios.FirstOrDefault();
+                Task<UsuarioModel?> usuario = Task.FromResult(usuarios.FirstOrDefault());
+
+                return usuario;
             }
             catch (Exception ex)
             {

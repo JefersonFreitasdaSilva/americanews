@@ -47,12 +47,14 @@ namespace AmericaNews.Data
             return registros;
         }
 
-        public List<RegistroModel> GetAll()
+        public Task<List<RegistroModel>> GetAll()
         {
             try
             {
                 string sql = "SELECT * FROM Registro";
-                var registros = ExecuteSelectCommands(sql);
+                var result = ExecuteSelectCommands(sql);
+
+                Task<List<RegistroModel>> registros = Task.FromResult(result);
 
                 return registros;
             }
@@ -63,14 +65,16 @@ namespace AmericaNews.Data
             }
         }
 
-        public RegistroModel? GetById(int id)
+        public Task<RegistroModel?> GetById(int id)
         {
             try
             {
                 string sql = "SELECT * FROM Registro WHERE ID = " + id;
-                var registros = ExecuteSelectCommands(sql);
+                var result = ExecuteSelectCommands(sql);
 
-                return registros.FirstOrDefault();
+                Task<RegistroModel?> registro = Task.FromResult(result.FirstOrDefault());
+
+                return registro;
             }
             catch (Exception ex)
             {
