@@ -49,12 +49,14 @@ namespace AmericaNews.Data
             return comentarios;
         }
 
-        public List<ComentarioModel> GetAllByNoticia(int idNoticia)
+        public Task<List<ComentarioModel>> GetAllByNoticia(int idNoticia)
         {
             try
             {
                 string sql = "SELECT * FROM Comentario WHERE IDNoticia = " + idNoticia;
-                var comentarios = ExecuteSelectCommands(sql);
+                var result = ExecuteSelectCommands(sql);
+
+                Task<List<ComentarioModel>> comentarios = Task.FromResult(result);
 
                 return comentarios;
             }
@@ -65,12 +67,14 @@ namespace AmericaNews.Data
             }
         }
 
-        public List<ComentarioModel> GetAllByStatus(int status)
+        public Task<List<ComentarioModel>> GetAllByStatus(int status)
         {
             try
             {
                 string sql = "SELECT * FROM Comentario WHERE Status = " + status;
-                var comentarios = ExecuteSelectCommands(sql);
+                var result = ExecuteSelectCommands(sql);
+
+                Task<List<ComentarioModel>> comentarios = Task.FromResult(result);
 
                 return comentarios;
             }
@@ -81,14 +85,16 @@ namespace AmericaNews.Data
             }
         }
 
-        public ComentarioModel? GetById(int id)
+        public Task<ComentarioModel?> GetById(int id)
         {
             try
             {
                 string sql = "SELECT * FROM Comentario WHERE ID = " + id;
-                var comentarios = ExecuteSelectCommands(sql);
+                var result = ExecuteSelectCommands(sql);
 
-                return comentarios.FirstOrDefault();
+                Task<ComentarioModel?> comentario = Task.FromResult(result.FirstOrDefault());
+
+                return comentario;
             }
             catch (Exception ex)
             {

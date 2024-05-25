@@ -82,11 +82,11 @@ namespace AmericaNews.Data
             }
         }
 
-        public Task<UsuarioModel?> GetByCredentials(string email, string senha)
+        public Task<UsuarioModel?> GetByCredentials(string email)
         {
             try
             {
-                string sql = string.Format("SELECT * FROM Usuario WHERE Email = {0} AND Senha = {1}", email, senha);
+                string sql = string.Format("SELECT * FROM Usuario WHERE EmailCorporativo = {0}", email);
                 var usuarios = ExecuteSelectCommands(sql);
 
                 Task<UsuarioModel?> usuario = Task.FromResult(usuarios.FirstOrDefault());
@@ -95,7 +95,7 @@ namespace AmericaNews.Data
             }
             catch (Exception ex)
             {
-                Console.WriteLine(string.Format("Ocorreu um erro ao buscar o usuario de email {0} e senha {1} no banco de dados: {2}", email, senha, ex.Message));
+                Console.WriteLine(string.Format("Ocorreu um erro ao buscar o usuario de Email Corporativo {0} e senha {1} no banco de dados: {2}", email, senha, ex.Message));
                 throw;
             }
         }

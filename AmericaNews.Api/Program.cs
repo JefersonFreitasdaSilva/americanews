@@ -2,6 +2,7 @@ using AmericaNews.Data;
 using AmericaNews.Data.Interfaces;
 using AmericaNews.Services;
 using AmericaNews.Services.Interfaces;
+using System.Security.Cryptography;
 
 namespace AmericaNews.Api
 {
@@ -22,6 +23,8 @@ namespace AmericaNews.Api
             builder.Services.AddScoped<INoticiaRepository, NoticiaRepository>();
             builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
             builder.Services.AddScoped<IRegistroRepository, RegistroRepository>();
+
+            builder.Services.AddScoped<HashAlgorithm, HashAlgorithm>();
 
             builder.Services.AddScoped<IUsuarioService, UsuarioService>();
             builder.Services.AddScoped<INoticiaService, NoticiaService>();

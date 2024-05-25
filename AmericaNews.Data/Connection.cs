@@ -9,7 +9,6 @@ namespace AmericaNews.Data
     {
         public static string? GetConnectionString()
         {
-            // TODO: Substitua as credenciais abaixo pelas suas credenciais pessoais para testar localmente
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                 .AddJsonFile("appsettings.json")

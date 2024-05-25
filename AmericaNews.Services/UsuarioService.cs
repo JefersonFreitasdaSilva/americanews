@@ -1,5 +1,7 @@
 ﻿using AmericaNews.Data.Interfaces;
 using AmericaNews.Services.Interfaces;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace AmericaNews.Services
 {
@@ -7,21 +9,26 @@ namespace AmericaNews.Services
     {
         IUsuarioRepository _usuarioRepository;
         IRegistroService _registroService;
+        HashAlgorithm _criptografia;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository, IRegistroService registroService)
+        public UsuarioService(IUsuarioRepository usuarioRepository, IRegistroService registroService, HashAlgorithm algoritmo)
         {
             _usuarioRepository = usuarioRepository;
             _registroService = registroService;
+            _criptografia = algoritmo;
         }
 
         public async Task<UsuarioModel> GetByCredentials(string email, string senha)
         {
             try
             {
-                var usuario = await _usuarioRepository.GetByCredentials(email, senha);
+                var usuario = await _usuarioRepository.GetByCredentials(email);
 
                 if (usuario == null)
                     throw new KeyNotFoundException(string.Format("O usuário com as seguintes credenciais não foi encontrado! Email: {0}  Senha {1}", email, senha));
+
+                if (!VerificarSenha(senha, usuario.Senha))
+                    throw new KeyNotFoundException(string.Format("A senha digitada está incorreta!", email, senha));
 
                 return usuario;
 
@@ -30,6 +37,26 @@ namespace AmericaNews.Services
                 Console.WriteLine(string.Format("Ocorreu um erro ao buscar o usuario pelas credenciais: Email {0}  Senha: {1}. Detahes: {2}", email, senha, ex.Message));
                 throw;
             }
+        }
+
+        public string CriptografarSenha(string senha)
+        {
+            var valorCodificado = Encoding.UTF8.GetBytes(senha);
+            var senhaCriptografada = _criptografia.ComputeHash(valorCodificado);
+
+            var sb = new StringBuilder();
+            foreach (var caractere in senhaCriptografada)
+            {
+                sb.Append(caractere.ToString("X2"));
+            }
+
+            return sb.ToString();
+        }
+
+        public bool VerificarSenha(string senhaDigitada, string senhaCadastrada)
+        {
+            var senhaCriptografada = CriptografarSenha(senhaDigitada);
+            return senhaCriptografada == senhaCadastrada;
         }
 
         public UsuarioModel? GetById(int id)
@@ -79,6 +106,7 @@ namespace AmericaNews.Services
             {
                 var date = DateTime.Now;
                 usuario.Data = date;
+                usuario.Senha = CriptografarSenha(usuario.Senha);
 
                 if (!AdminExists(admId))
                     throw new KeyNotFoundException(string.Format("O administrador que está cadastrando o usuário não é válido! Id Admin: {0}", admId));

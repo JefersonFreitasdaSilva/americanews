@@ -134,6 +134,35 @@ namespace AmericaNews.Api.Controllers
             }
         }
 
+        [HttpPut("atualizarStatus/{id}/{status}/{idAdmin}")]
+        public async Task<ActionResult<List<ComentarioModel>>> UpdateStatus(int id, int status, int idAdmin)
+        {
+            try
+            {
+                if (id <= 0 || status <= 0 || idAdmin <= 0)
+                    throw new ValidationException("Parâmetros Inválidos!");
+
+                _noticiaService.UpdateStatus(id, status, idAdmin);
+
+                var mensagem = string.Format("O status da Notícia de ID {0} foi alterado para {1} pelo admin de ID {2}",
+                    id, (EnumStatus)status, idAdmin);
+
+                return Ok(mensagem);
+            }
+            catch (ValidationException vex)
+            {
+                return BadRequest(new { message = vex.Message });
+            }
+            catch (KeyNotFoundException nex)
+            {
+                return NotFound(new { message = nex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Ocorreu um erro ao processar sua solicitação.", details = ex.Message });
+            }
+        }
+
         private string NoticiaValidations(Noticia noticia)
         {
             var error = string.Empty;

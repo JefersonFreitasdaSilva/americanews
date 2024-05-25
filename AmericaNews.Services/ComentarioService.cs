@@ -21,20 +21,30 @@ namespace AmericaNews.Services
             _noticiaService = noticiaService;
         }
 
-        public List<ComentarioModel> GetAllByNoticia(int idNoticia)
-        {           
-            return _comentarioRepository.GetAllByNoticia(idNoticia);
-        }
-
-        public List<ComentarioModel> GetAllByStatus(int status)
+        public async Task<List<ComentarioModel>> GetAllByNoticia(int idNoticia)
         {
-            return _comentarioRepository.GetAllByStatus(status);
+            var comentarios = await _comentarioRepository.GetAllByNoticia(idNoticia);
+
+            if (comentarios == null || !comentarios.Any())
+                throw new KeyNotFoundException("Nenhuma comentário foi encontrado para a notícia de ID " + idNoticia);
+
+            return comentarios;
         }
 
-        public ComentarioModel? GetById(int id)
+        public async Task<List<ComentarioModel>> GetAllByStatus(int status)
+        {
+            var comentarios = await _comentarioRepository.GetAllByStatus(status);
+
+            if (comentarios == null || !comentarios.Any())
+                throw new KeyNotFoundException("Nenhuma comentário foi encontrado com o status de ID " + status);
+
+            return comentarios;
+        }
+
+        public async Task<ComentarioModel> GetById(int id)
         {
             try { 
-                var comentario = _comentarioRepository.GetById(id);
+                var comentario = await _comentarioRepository.GetById(id);
 
                 if (comentario == null)
                     throw new KeyNotFoundException(string.Format("O comentário de ID {0} não foi encontrado!", id));
@@ -84,12 +94,13 @@ namespace AmericaNews.Services
             }
         }
 
-        public void UpdateStatus(int idComentario, int newStatus, int idAdmin)
+        public async void UpdateStatus(int idComentario, int newStatus, int idAdmin)
         {
             try
             {
-                var comentario = _comentarioRepository.GetById(idComentario);
-                
+                var result = _comentarioRepository.GetById(idComentario);
+                var comentario = await result;
+
                 if (comentario == null)
                     throw new KeyNotFoundException(string.Format("O comentário de ID {0} não foi encontrado!", idComentario));
 
