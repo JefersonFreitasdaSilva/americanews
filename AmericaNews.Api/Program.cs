@@ -24,7 +24,7 @@ namespace AmericaNews.Api
             builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
             builder.Services.AddScoped<IRegistroRepository, RegistroRepository>();
 
-            builder.Services.AddScoped<HashAlgorithm, HashAlgorithm>();
+            builder.Services.AddScoped<SHA256>(provider => SHA256.Create());
 
             builder.Services.AddScoped<IUsuarioService, UsuarioService>();
             builder.Services.AddScoped<INoticiaService, NoticiaService>();

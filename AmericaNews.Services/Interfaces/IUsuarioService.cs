@@ -4,7 +4,7 @@
     {
         public UsuarioModel? GetById(int id);
         public Task<UsuarioModel> GetByCredentials(string email, string senha);
-        public void Insert(UsuarioModel model, int admId);
+        public Task<UsuarioModel> Insert(UsuarioModel model, int admId);
         public bool AdminExists(int adminId);
         public bool UsuarioExists(int adminId);
     }

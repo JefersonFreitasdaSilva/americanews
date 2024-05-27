@@ -44,7 +44,7 @@ namespace AmericaNews.Services
         public async Task<ComentarioModel> GetById(int id)
         {
             try { 
-                var comentario = await _comentarioRepository.GetById(id);
+                var comentario = _comentarioRepository.GetById(id);
 
                 if (comentario == null)
                     throw new KeyNotFoundException(string.Format("O comentário de ID {0} não foi encontrado!", id));
@@ -66,10 +66,10 @@ namespace AmericaNews.Services
                 comentario.Data = date;
 
                 if (!_usuarioService.UsuarioExists(comentario.IDUsuario))
-                    throw new KeyNotFoundException(string.Format("O usuário que está cadastrando o comentário não foi encontrado! Id Usuário: {0}", comentario.IDUsuario));
+                    throw new KeyNotFoundException("O usuário que está cadastrando o comentário não foi encontrado!");
 
                 if (!_noticiaService.NoticiaExists(comentario.IDNoticia))
-                    throw new KeyNotFoundException(string.Format("A notícia não foi encontrada! Id Notícia: {0}", comentario.IDNoticia));
+                    throw new KeyNotFoundException("A notícia não foi encontrada!");
 
                 _comentarioRepository.Insert(comentario);
 
@@ -79,9 +79,7 @@ namespace AmericaNews.Services
                     new RegistroModel("Comentario", "status", string.Empty, comentario.Status.ToString(), date, comentario.IDUsuario),
                     new RegistroModel("Comentario", "IDUsuario", string.Empty, comentario.IDUsuario.ToString(), date, comentario.IDUsuario),
                     new RegistroModel("Comentario", "IDNoticia", string.Empty, comentario.IDNoticia.ToString(), date, comentario.IDUsuario),
-                    new RegistroModel("Comentario", "qData", string.Empty, comentario.Data.ToString(), date, comentario.IDUsuario),
-                    new RegistroModel("Comentario", "ID_ADM_Reprovou", string.Empty, comentario.ID_ADM_Reprovou.ToString(), date, comentario.IDUsuario),
-                    new RegistroModel("Comentario", "DataReprovado", string.Empty, comentario.DataReprovado.ToString(), date, comentario.IDUsuario)
+                    new RegistroModel("Comentario", "Data", string.Empty, comentario.Data.ToString(), date, comentario.IDUsuario)
                 };
 
                 _registroService.InsertBatch(registros);
@@ -94,12 +92,11 @@ namespace AmericaNews.Services
             }
         }
 
-        public async void UpdateStatus(int idComentario, int newStatus, int idAdmin)
+        public void UpdateStatus(int idComentario, int newStatus, int idAdmin)
         {
             try
             {
-                var result = _comentarioRepository.GetById(idComentario);
-                var comentario = await result;
+                var comentario = _comentarioRepository.GetById(idComentario);
 
                 if (comentario == null)
                     throw new KeyNotFoundException(string.Format("O comentário de ID {0} não foi encontrado!", idComentario));
@@ -107,7 +104,7 @@ namespace AmericaNews.Services
                 if (!_usuarioService.AdminExists(idAdmin))
                     throw new KeyNotFoundException(string.Format("O administrador que está modificando o status do comentário não é válido! Id Admin: {0}", idAdmin));
 
-                var oldComentario = comentario;
+                int oldComentarioStatus = comentario.Status;
 
                 comentario.Status = Convert.ToInt32(newStatus);
                 comentario.ID_ADM_Reprovou = idAdmin;
@@ -117,9 +114,9 @@ namespace AmericaNews.Services
 
                 var registros = new List<RegistroModel>()
                 {
-                    new RegistroModel("Comentario", "status", oldComentario.Status.ToString(), oldComentario.Status.ToString(), DateTime.Now, idAdmin),
-                    new RegistroModel("Comentario", "ID_ADM_Reprovou ", string.Empty, oldComentario.ID_ADM_Reprovou.ToString(), DateTime.Now, idAdmin),
-                    new RegistroModel("Comentario", "DataReprovado", string.Empty, oldComentario.DataReprovado.ToString(), DateTime.Now, idAdmin)
+                    new RegistroModel("Comentario", "status", oldComentarioStatus.ToString(), comentario.Status.ToString(), DateTime.Now, idAdmin),
+                    new RegistroModel("Comentario", "ID_ADM_Reprovou ", string.Empty, comentario.ID_ADM_Reprovou.ToString(), DateTime.Now, idAdmin),
+                    new RegistroModel("Comentario", "DataReprovado", string.Empty, comentario.DataReprovado.ToString(), DateTime.Now, idAdmin)
                 };
 
                 _registroService.InsertBatch(registros);

@@ -1,5 +1,6 @@
 ﻿using AmericaNews.Data.Interfaces;
 using AmericaNews.Services.Interfaces;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -9,9 +10,9 @@ namespace AmericaNews.Services
     {
         IUsuarioRepository _usuarioRepository;
         IRegistroService _registroService;
-        HashAlgorithm _criptografia;
+        SHA256 _criptografia;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository, IRegistroService registroService, HashAlgorithm algoritmo)
+        public UsuarioService(IUsuarioRepository usuarioRepository, IRegistroService registroService, SHA256 algoritmo)
         {
             _usuarioRepository = usuarioRepository;
             _registroService = registroService;
@@ -25,7 +26,7 @@ namespace AmericaNews.Services
                 var usuario = await _usuarioRepository.GetByCredentials(email);
 
                 if (usuario == null)
-                    throw new KeyNotFoundException(string.Format("O usuário com as seguintes credenciais não foi encontrado! Email: {0}  Senha {1}", email, senha));
+                    throw new KeyNotFoundException(string.Format("Não foi encontrado nenhum usuário com o e-mail digitado!"));
 
                 if (!VerificarSenha(senha, usuario.Senha))
                     throw new KeyNotFoundException(string.Format("A senha digitada está incorreta!", email, senha));
@@ -100,7 +101,12 @@ namespace AmericaNews.Services
             return exists;
         }
 
-        public void Insert(UsuarioModel usuario, int admId)
+        public bool EmailExists(string email)
+        {
+            return _usuarioRepository.EmailExists(email);
+        }
+
+        public Task<UsuarioModel> Insert(UsuarioModel usuario, int admId)
         {
             try
             {
@@ -111,7 +117,11 @@ namespace AmericaNews.Services
                 if (!AdminExists(admId))
                     throw new KeyNotFoundException(string.Format("O administrador que está cadastrando o usuário não é válido! Id Admin: {0}", admId));
 
+                if (EmailExists(usuario.EmailCorporativo))
+                    throw new ValidationException("Já existe um usuário com esse email cadastrado!");
+
                 _usuarioRepository.Insert(usuario);
+                var usuarioNovo = _usuarioRepository.GetByCredentials(usuario.EmailCorporativo);
 
                 var registros = new List<RegistroModel>()
                 {
@@ -120,13 +130,14 @@ namespace AmericaNews.Services
                     new RegistroModel("Usuarios", "Email", string.Empty, usuario.Email != null ? usuario.Email : string.Empty, date, admId),
                     new RegistroModel("Usuarios", "Senha", string.Empty, usuario.Senha, date, admId),
                     new RegistroModel("Usuarios", "Endereco", string.Empty, usuario.Endereco != null ? usuario.Endereco : string.Empty, date, admId),
-                    new RegistroModel("Usuarios", "qData", string.Empty, date.ToString(), date, admId),
-                    new RegistroModel("Usuarios", "qData", string.Empty, date.ToString(), date, admId),
+                    new RegistroModel("Usuarios", "Data", string.Empty, date.ToString(), date, admId),
                     new RegistroModel("Usuarios", "EmailCorporativo", string.Empty, usuario.EmailCorporativo, date, admId),
                     new RegistroModel("Usuarios", "NivelPermissao", string.Empty, usuario.NivelPermissao.ToString(), date, admId)
                 };
 
                 _registroService.InsertBatch(registros);
+
+                return usuarioNovo;
 
             } catch (Exception ex)
             {

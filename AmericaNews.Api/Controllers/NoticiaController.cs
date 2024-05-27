@@ -114,8 +114,9 @@ namespace AmericaNews.Api.Controllers
                     Texto = noticia.Texto,
                     LinkIMG = noticia.LinkIMG,
                     IDUsuario = noticia.IDUsuario,
-                    Status = (int)EnumStatus.Pendente
-                };
+                    Status = (int)EnumStatus.Pendente,
+                    ID_ADM_Aprovou = 0
+            };
 
                 _noticiaService.Insert(noticiaModel);
                 return Ok(noticiaModel);
@@ -147,7 +148,7 @@ namespace AmericaNews.Api.Controllers
                 var mensagem = string.Format("O status da Notícia de ID {0} foi alterado para {1} pelo admin de ID {2}",
                     id, (EnumStatus)status, idAdmin);
 
-                return Ok(mensagem);
+                return Ok(new { mensagem = mensagem });
             }
             catch (ValidationException vex)
             {
@@ -173,10 +174,10 @@ namespace AmericaNews.Api.Controllers
             if (!string.IsNullOrEmpty(noticia.Subtitulo) && noticia.Subtitulo.Length > 255)
                 error = "Subtítulo Inválido!";
 
-            if (!string.IsNullOrEmpty(noticia.Texto))
+            if (string.IsNullOrEmpty(noticia.Texto))
                 error = "Texto Inválido!";
 
-            if (!string.IsNullOrEmpty(noticia.LinkIMG))
+            if (string.IsNullOrEmpty(noticia.LinkIMG))
                 error = "Link de imagem Inválido!";
 
             if (noticia.IDUsuario <= 0)

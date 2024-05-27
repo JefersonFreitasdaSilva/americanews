@@ -56,7 +56,7 @@ namespace AmericaNews.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<UsuarioModel> Insert([FromBody] Usuario usuario)
+        public async Task<ActionResult<UsuarioModel>> Insert([FromBody] Usuario usuario)
         {
             try
             {
@@ -76,8 +76,8 @@ namespace AmericaNews.Api.Controllers
                     Telefone = usuario.Telefone
                 };
 
-                _usuarioService.Insert(usuarioModel, usuario.AdminId);
-                return Ok(usuarioModel);
+                UsuarioModel usuarioNovo = await _usuarioService.Insert(usuarioModel, usuario.AdminId);
+                return Ok(usuarioNovo);
             }
             catch (ValidationException vex)
             {
@@ -113,7 +113,7 @@ namespace AmericaNews.Api.Controllers
             if (!string.IsNullOrEmpty(usuario.Endereco) && usuario.Endereco.Length > 200)
                 error = "Endereço Inválido!";
 
-            if (string.IsNullOrEmpty(usuario.EmailCorporativo) || usuario.EmailCorporativo.Length > 100)
+            if (string.IsNullOrEmpty(usuario.EmailCorporativo) || usuario.EmailCorporativo.Length > 100 || !Regex.IsMatch(usuario.EmailCorporativo, emailPattern, RegexOptions.IgnoreCase))
                 error = "E-mail Corporativo Inválido!";
 
             if (usuario.AdminId <= 0)

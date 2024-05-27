@@ -41,7 +41,7 @@ namespace AmericaNews.Services
         {
             try
             {
-                var noticia = await _noticiaRepository.GetById(id);
+                var noticia = _noticiaRepository.GetById(id);
 
                 if (noticia == null)
                     throw new KeyNotFoundException(string.Format("A Notícia de ID {0} não foi encontrada!", id));
@@ -74,7 +74,7 @@ namespace AmericaNews.Services
                 noticia.Data = date;
 
                 if (!_usuarioService.UsuarioExists(noticia.IDUsuario))
-                    throw new KeyNotFoundException(string.Format("O usuário que está cadastrando a notícia não foi encontrado! Id Usuário: {0}", noticia.IDUsuario));
+                    throw new KeyNotFoundException("O usuário que está cadastrando a notícia não foi encontrado!");
 
                 _noticiaRepository.Insert(noticia);
 
@@ -83,11 +83,12 @@ namespace AmericaNews.Services
                     new RegistroModel("Noticia", "Titulo", string.Empty, noticia.Titulo, date, noticia.IDUsuario),
                     new RegistroModel("Noticia", "Subtitulo", string.Empty, noticia.Subtitulo != null ? noticia.Subtitulo : string.Empty, date, noticia.IDUsuario),
                     new RegistroModel("Noticia", "Texto", string.Empty, noticia.Texto != null ? noticia.Texto : string.Empty, date, noticia.IDUsuario),
-                    new RegistroModel("Noticia", "qData", string.Empty, noticia.Data.ToString(), date, noticia.IDUsuario),
+                    new RegistroModel("Noticia", "Data", string.Empty, noticia.Data.ToString(), date, noticia.IDUsuario),
+                    new RegistroModel("Noticia", "LinkIMG", string.Empty, noticia.LinkIMG, date, noticia.IDUsuario),
                     new RegistroModel("Noticia", "status", string.Empty, noticia.Status.ToString(), date, noticia.IDUsuario),
                     new RegistroModel("Noticia", "IDUsuario", string.Empty, noticia.IDUsuario.ToString(), date, noticia.IDUsuario),
-                    new RegistroModel("Noticia", "ID_ADM_Aprovou", string.Empty, noticia.ID_ADM_Aprovou.ToString(), date, noticia.IDUsuario),
-                    new RegistroModel("Noticia", "DataAprovada", string.Empty, noticia.DataAprovada.ToString(), date, noticia.IDUsuario)
+                    new RegistroModel("Noticia", "ID_ADM_Aprovou", string.Empty, "null", date, noticia.IDUsuario),
+                    new RegistroModel("Noticia", "DataAprovada", string.Empty, "null", date, noticia.IDUsuario)
                 };
 
                 _registroService.InsertBatch(registros);
@@ -100,20 +101,19 @@ namespace AmericaNews.Services
             }
         }
 
-        public async void UpdateStatus(int idNoticia, int newStatus, int idAdmin)
+        public void UpdateStatus(int idNoticia, int newStatus, int idAdmin)
         {
             try
             {
-                var result = _noticiaRepository.GetById(idNoticia);
-                var noticia = await result;
+                var noticia = _noticiaRepository.GetById(idNoticia);
 
                 if (noticia == null)
-                    throw new KeyNotFoundException(string.Format("A notícia de ID {0} não foi encontrada!", idNoticia));
+                    throw new KeyNotFoundException(string.Format("A notícia de ID {0} não foi encontrada!", idNoticia.ToString()));
 
                 if (!_usuarioService.AdminExists(idAdmin))
-                    throw new KeyNotFoundException(string.Format("O administrador que está modificando o status da notícia não é válido! Id Admin: {0}", idAdmin));
+                    throw new KeyNotFoundException(string.Format("O administrador que está modificando o status da notícia não é válido! Id Admin: {0}", idAdmin.ToString()));
 
-                var oldNoticia = noticia;
+                int oldStatus = noticia.Status;
 
                 noticia.Status = newStatus;
                 noticia.ID_ADM_Aprovou = idAdmin;
@@ -122,7 +122,7 @@ namespace AmericaNews.Services
 
                 var registros = new List<RegistroModel>()
                 {
-                    new RegistroModel("Noticia", "Status", oldNoticia.Status.ToString(), noticia.Status.ToString(), DateTime.Now, idAdmin),
+                    new RegistroModel("Noticia", "Status", oldStatus.ToString(), noticia.Status.ToString(), DateTime.Now, idAdmin),
                     new RegistroModel("Noticia", "ID_ADM_Aprovou", string.Empty, noticia.ID_ADM_Aprovou.ToString(), DateTime.Now, idAdmin),
                     new RegistroModel("Noticia", "DataAprovada", string.Empty, noticia.DataAprovada.ToString(), DateTime.Now, idAdmin)
                 };

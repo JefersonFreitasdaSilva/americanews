@@ -1,5 +1,8 @@
 ﻿using AmericaNews.Data.Interfaces;
 using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Win32;
 
 namespace AmericaNews.Data
 {
@@ -34,7 +37,7 @@ namespace AmericaNews.Data
                             Antes = reader["antes"].ToString(),
                             Depois = reader["depois"].ToString(),
                             Responsavel = Convert.ToInt32(reader["Responsavel"]),
-                            Data = Convert.ToDateTime(reader["Dataq"])
+                            Data = Convert.ToDateTime(reader["Data"])
                         };
 
                         registros.Add(registro);
@@ -88,7 +91,7 @@ namespace AmericaNews.Data
             try
             {
                 string sql = string.Format("INSERT INTO Registro(Tabela, Coluna, antes, depois, Responsavel, Dataq) " +
-                    "VALUES({0}, {1}, {2}, {3}, {4}, {5})",
+                    "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
                     registro.Tabela, registro.Coluna, registro.Antes, registro.Depois, registro.Responsavel, registro.Data);
 
                 Connection.ExecuteCommands(sql, _connectionString);
@@ -104,13 +107,24 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = "INSERT INTO Registro(Tabela, Coluna, antes, depois, Responsavel, Dataq) VALUES";
+                string sql = "INSERT INTO Registro(Tabela, Coluna, antes, depois, Responsavel, Data) VALUES";
 
-                foreach (var registro in registros)
+                for (int i = 0; i < registros.Count(); i++)
                 {
-                    sql += string.Format(@"
-                                        ({0}, {1}, {2}, {3}, {4}, {5})",
-                    registro.Tabela, registro.Coluna, registro.Antes, registro.Depois, registro.Responsavel, registro.Data);
+                    var registro = registros[i];
+
+                    if (i == registros.Count() - 1)
+                    {
+                        sql += string.Format(@"
+                                        ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
+                                registro.Tabela, registro.Coluna, registro.Antes, registro.Depois, registro.Responsavel, registro.Data);
+                    }
+                    else
+                    {
+                        sql += string.Format(@"
+                                        ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}'),",
+                                registro.Tabela, registro.Coluna, registro.Antes, registro.Depois, registro.Responsavel, registro.Data);
+                    }
                 }
 
                 Connection.ExecuteCommands(sql, _connectionString);

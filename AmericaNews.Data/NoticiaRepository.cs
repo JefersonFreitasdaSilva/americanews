@@ -72,7 +72,7 @@ namespace AmericaNews.Data
         {
             try
             {  
-                string sql = "SELECT * FROM Noticia WHERE Ocultar = " + status;
+                string sql = "SELECT * FROM Noticia WHERE status = " + status;
                 var result = ExecuteSelectCommands(sql);
 
                 Task<List<NoticiaModel>> noticias = Task.FromResult(result);
@@ -86,16 +86,14 @@ namespace AmericaNews.Data
             }
         }
 
-        public Task<NoticiaModel?> GetById(int id)
+        public NoticiaModel? GetById(int id)
         {
             try
             {
                 string sql = "SELECT * FROM Noticia WHERE ID = " + id;
-                var result = ExecuteSelectCommands(sql);
+                var noticia = ExecuteSelectCommands(sql);
 
-                Task<NoticiaModel?> noticia = Task.FromResult(result.FirstOrDefault());
-
-                return noticia;
+                return noticia.FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -108,10 +106,10 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = string.Format("INSERT INTO Noticia(Titulo, Subtitulo, Texto, qData, Status, IDUsuario, ID_ADM_Aprovou, DataAprovada) " +
-                    "VALUES({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})",
+                string sql = string.Format("INSERT INTO Noticia(Titulo, Subtitulo, Texto, Data, Status, IDUsuario, LinkIMG) " +
+                    "VALUES('{0}', '{1}', '{2}', '{3}', {4}, {5}, '{6}')",
                     noticia.Titulo, noticia.Subtitulo, noticia.Texto, noticia.Data, noticia.Status,
-                    noticia.IDUsuario, noticia.ID_ADM_Aprovou, noticia.DataAprovada);
+                    noticia.IDUsuario, noticia.LinkIMG);
 
                 Connection.ExecuteCommands(sql, _connectionString);
             }
@@ -126,7 +124,7 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = string.Format("UPDATE Noticia SET Status = {0}, ID_ADM_Aprovou = {1}, DataAprovada = {2}" +
+                string sql = string.Format("UPDATE Noticia SET Status = {0}, ID_ADM_Aprovou = {1}, DataAprovada = '{2}'" +
                                            "WHERE ID = {3}",
                     noticia.Status, noticia.ID_ADM_Aprovou, noticia.DataAprovada, noticia.ID);
 

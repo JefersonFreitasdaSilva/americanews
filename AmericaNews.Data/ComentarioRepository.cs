@@ -31,7 +31,7 @@ namespace AmericaNews.Data
                         {
                             ID = Convert.ToInt32(reader["ID"]),
                             Texto = reader["Texto"].ToString(),
-                            Data = Convert.ToDateTime(reader["qData"]),
+                            Data = Convert.ToDateTime(reader["Data"]),
                             Status = Convert.ToInt32(reader["Status"]),
                             IDUsuario = Convert.ToInt32(reader["IDUsuario"]),
                             IDNoticia = Convert.ToInt32(reader["IDNoticia"]),
@@ -85,16 +85,14 @@ namespace AmericaNews.Data
             }
         }
 
-        public Task<ComentarioModel?> GetById(int id)
+        public ComentarioModel? GetById(int id)
         {
             try
             {
                 string sql = "SELECT * FROM Comentario WHERE ID = " + id;
-                var result = ExecuteSelectCommands(sql);
+                var comentario = ExecuteSelectCommands(sql);
 
-                Task<ComentarioModel?> comentario = Task.FromResult(result.FirstOrDefault());
-
-                return comentario;
+                return comentario.FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -107,10 +105,9 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = string.Format("INSERT INTO Comentario(Texto, status, IDUsuario, IDNoticia, qData, ID_ADM_Reprovou, DataReprovado) " +
-                    "VALUES({0}, {1}, {2}, {3}, {4}, {5}, {6}",
-                    comentario.Texto, comentario.Status, comentario.IDUsuario, comentario.IDNoticia, 
-                    comentario.Data, comentario.ID_ADM_Reprovou, comentario.DataReprovado);
+                string sql = string.Format("INSERT INTO Comentario(Texto, status, IDUsuario, IDNoticia, Data) " +
+                    "VALUES('{0}', {1}, {2}, {3}, '{4}')",
+                    comentario.Texto, comentario.Status, comentario.IDUsuario, comentario.IDNoticia, comentario.Data);
 
                 Connection.ExecuteCommands(sql, _connectionString);
             }
@@ -125,8 +122,8 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = string.Format("UPDATE Comentario SET status = {0}, ID_ADM_Reprovou  = {1}, DataReprovado = {2}" +
-                                           "WHERE ID = {3}",
+                string sql = string.Format("UPDATE Comentario SET status = {0}, ID_ADM_Reprovou  = {1}, DataReprovado = '{2}'" +
+                                           " WHERE ID = {3}",
                     comentario.Status, comentario.ID_ADM_Reprovou, comentario.DataReprovado, comentario.ID);
 
                 Connection.ExecuteCommands(sql, _connectionString);

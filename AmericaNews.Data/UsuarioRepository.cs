@@ -36,7 +36,7 @@ namespace AmericaNews.Data
                             Email = reader["Email"].ToString(),
                             EmailCorporativo = reader["EmailCorporativo"].ToString(),
                             Endereco = reader["Endereco"].ToString(),
-                            Data = Convert.ToDateTime(reader["qData"]),
+                            Data = Convert.ToDateTime(reader["Data"]),
                             NivelPermissao = Convert.ToInt32(reader["NivelPermissao"])
                         };
 
@@ -70,7 +70,7 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = string.Format("SELECT * FROM Usuario WHERE NivelPermissao = {0} AND ID = {1}", EnumNivelPermissao.Admin, id);
+                string sql = string.Format("SELECT * FROM Usuario WHERE NivelPermissao = {0} AND ID = {1}", (int)EnumNivelPermissao.Admin, id);
                 var usuarios = ExecuteSelectCommands(sql);
 
                 return usuarios.FirstOrDefault();
@@ -82,20 +82,38 @@ namespace AmericaNews.Data
             }
         }
 
+        public bool EmailExists(string email)
+        {
+            try
+            {
+                string sql = string.Format("SELECT * FROM Usuario WHERE EmailCorporativo = '{0}'", email);
+                var usuarios = ExecuteSelectCommands(sql);
+
+                if (usuarios.Any())
+                    return true;
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format("Ocorreu um erro ao buscar o usuario de Email Corporativo {0} no banco de dados: {1}", email, ex.Message));
+                throw;
+            }
+        }
+
         public Task<UsuarioModel?> GetByCredentials(string email)
         {
             try
             {
-                string sql = string.Format("SELECT * FROM Usuario WHERE EmailCorporativo = {0}", email);
+                string sql = string.Format("SELECT * FROM Usuario WHERE EmailCorporativo = '{0}'", email);
                 var usuarios = ExecuteSelectCommands(sql);
 
-                Task<UsuarioModel?> usuario = Task.FromResult(usuarios.FirstOrDefault());
-
+                Task<UsuarioModel?> usuario = Task.FromResult(usuarios.FirstOrDefault());  
                 return usuario;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(string.Format("Ocorreu um erro ao buscar o usuario de Email Corporativo {0} e senha {1} no banco de dados: {2}", email, senha, ex.Message));
+                Console.WriteLine(string.Format("Ocorreu um erro ao buscar o usuario de Email Corporativo {0} no banco de dados: {1}", email, ex.Message));
                 throw;
             }
         }
@@ -104,8 +122,8 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = string.Format("INSERT INTO Usuario(Nome, Telefone, Email, Senha, Endereco, qData, EmailCorporativo, NivelPermissao) " +
-                    "VALUES({0}, {1}, {2}, {3}, {4}, {5}, {6})",
+                string sql = string.Format("INSERT INTO Usuario(Nome, Telefone, Email, Senha, Endereco, Data, EmailCorporativo, NivelPermissao) " +
+                    "VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7})",
                     usuario.Nome, usuario.Telefone, usuario.Email, usuario.Senha, usuario.Endereco, usuario.Data, 
                     usuario.EmailCorporativo, usuario.NivelPermissao);
 

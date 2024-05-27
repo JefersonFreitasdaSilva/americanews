@@ -109,7 +109,7 @@ namespace AmericaNews.Api.Controllers
                     Texto = comentario.Texto,
                     IDNoticia = comentario.IDNoticia,
                     IDUsuario = comentario.IDUsuario,
-                    Status = (int)EnumStatus.Pendente
+                    Status = (int)EnumStatus.Aprovado
                 };
 
                 _comentarioService.Insert(comentarioModel);
@@ -142,7 +142,7 @@ namespace AmericaNews.Api.Controllers
                 var mensagem = string.Format("O status do Comentário de ID {0} foi alterado para {1} pelo admin de ID {2}", 
                     id, (EnumStatus)status, idAdmin);
 
-                return Ok(mensagem);
+                return Ok(new { mensagem = mensagem } );
             }
             catch (ValidationException vex)
             {
