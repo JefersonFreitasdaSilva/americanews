@@ -1,10 +1,7 @@
 ﻿using AmericaNews.Api.Models;
-using AmericaNews.Data;
 using AmericaNews.Data.Interfaces;
 using AmericaNews.Data.Models;
-using AmericaNews.Services;
 using AmericaNews.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
@@ -56,6 +53,28 @@ namespace AmericaNews.Api.Controllers
             try
             {
                 ComentarioModel comentarios = await _comentarioService.GetById(id);
+                return Ok(comentarios);
+            }
+            catch (ValidationException vex)
+            {
+                return BadRequest(new { message = vex.Message });
+            }
+            catch (KeyNotFoundException nex)
+            {
+                return NotFound(new { message = nex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Ocorreu um erro ao processar sua solicitação.", details = ex.Message });
+            }
+        }
+
+        [HttpGet("noticiaStatus/{noticiaId}/{status}")]
+        public async Task<ActionResult<List<ComentarioModel>>> GetAllByNoticiaAndStatus(int noticiaId, int status)
+        {
+            try
+            {
+                List<ComentarioModel> comentarios = await _comentarioService.GetAllByStatusAndNoticia(status, noticiaId);
                 return Ok(comentarios);
             }
             catch (ValidationException vex)

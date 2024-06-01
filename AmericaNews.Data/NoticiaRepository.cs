@@ -86,6 +86,24 @@ namespace AmericaNews.Data
             }
         }
 
+        public Task<List<NoticiaModel>> Search(string termo, int status)
+        {
+            try
+            {
+                string sql = string.Format("SELECT * FROM Noticia WHERE status = {0} AND Titulo LIKE '%{1}%'", status, termo);
+                var result = ExecuteSelectCommands(sql);
+
+                Task<List<NoticiaModel>> noticias = Task.FromResult(result);
+
+                return noticias;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format("Ocorreu um erro ao buscar todas as notícias com a palavra {0} no título no banco de dados: {1}", termo, ex.Message));
+                throw;
+            }
+        }
+
         public NoticiaModel? GetById(int id)
         {
             try

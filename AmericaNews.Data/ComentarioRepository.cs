@@ -67,6 +67,24 @@ namespace AmericaNews.Data
             }
         }
 
+        public Task<List<ComentarioModel>> GetAllByStatusAndNoticia(int status, int idNoticia)
+        {
+            try
+            {
+                string sql = string.Format("SELECT * FROM Comentario WHERE IDNoticia = {0} AND Status = {1}", idNoticia, status);
+                var result = ExecuteSelectCommands(sql);
+
+                Task<List<ComentarioModel>> comentarios = Task.FromResult(result);
+
+                return comentarios;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(string.Format("Ocorreu um erro ao buscar todos os comentarios da noticia de ID {0} e status de ID {1} no banco de dados: {1}", idNoticia, status, ex.Message));
+                throw;
+            }
+        }
+
         public Task<List<ComentarioModel>> GetAllByStatus(int status)
         {
             try

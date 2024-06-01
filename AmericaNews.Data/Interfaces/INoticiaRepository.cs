@@ -7,5 +7,6 @@
         public NoticiaModel? GetById(int id);
         public void Insert(NoticiaModel noticia);
         public void UpdateStatus(NoticiaModel noticia);
+        public Task<List<NoticiaModel>> Search(string termo, int status);
     }
 }

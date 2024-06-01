@@ -37,6 +37,16 @@ namespace AmericaNews.Services
             return noticias;
         }
 
+        public async Task<List<NoticiaModel>> Search(string termo, int status)
+        {
+            var noticias = await _noticiaRepository.Search(termo, status);
+
+            if (noticias == null || !noticias.Any())
+                throw new KeyNotFoundException(string.Format("Nenhuma notícia de status ID {0} com a palavra {1} no título foi encontrada!", status, termo));
+
+            return noticias;
+        }
+
         public async Task<NoticiaModel> GetById(int id)
         {
             try

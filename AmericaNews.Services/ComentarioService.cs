@@ -41,6 +41,16 @@ namespace AmericaNews.Services
             return comentarios;
         }
 
+        public async Task<List<ComentarioModel>> GetAllByStatusAndNoticia(int status, int idNoticia)
+        {
+            var comentarios = await _comentarioRepository.GetAllByStatusAndNoticia(status, idNoticia);
+
+            if (comentarios == null || !comentarios.Any())
+                throw new KeyNotFoundException(string.Format("Nenhuma comentário foi encontrado com o status de ID {0} e notícia de ID {1}", status, idNoticia));
+
+            return comentarios;
+        }
+
         public async Task<ComentarioModel> GetById(int id)
         {
             try { 

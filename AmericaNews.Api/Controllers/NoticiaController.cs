@@ -1,15 +1,9 @@
 ﻿using AmericaNews.Api.Models;
-using AmericaNews.Data;
 using AmericaNews.Data.Interfaces;
 using AmericaNews.Data.Models;
-using AmericaNews.Services;
 using AmericaNews.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
-using System.Text.RegularExpressions;
 
 namespace AmericaNews.Api.Controllers
 {
@@ -96,6 +90,29 @@ namespace AmericaNews.Api.Controllers
                 return StatusCode(500, new { message = "Ocorreu um erro ao processar sua solicitação.", details = ex.Message });
             }
         }
+
+        [HttpGet("search/{termo}/{status}")]
+        public async Task<ActionResult<List<NoticiaModel>>> Search(string termo, int status)
+        {
+            try
+            {
+                List<NoticiaModel> noticias = await _noticiaService.Search(termo, status);
+                return Ok(noticias);
+            }
+            catch (ValidationException vex)
+            {
+                return BadRequest(new { message = vex.Message });
+            }
+            catch (KeyNotFoundException nex)
+            {
+                return NotFound(new { message = nex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Ocorreu um erro ao processar sua solicitação.", details = ex.Message });
+            }
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<List<NoticiaModel>>> Insert([FromBody] Noticia noticia)
