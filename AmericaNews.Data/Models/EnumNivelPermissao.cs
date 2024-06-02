@@ -9,6 +9,7 @@ namespace AmericaNews.Data.Models
     public enum EnumNivelPermissao
     {
         Admin = 1,
-        Usuario = 2
+        Usuario = 2,
+        Desativado = 3
     }
 }

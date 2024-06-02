@@ -2,6 +2,8 @@ using AmericaNews.Data;
 using AmericaNews.Data.Interfaces;
 using AmericaNews.Services;
 using AmericaNews.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors;
 using System.Security.Cryptography;
 
 namespace AmericaNews.Api
@@ -31,6 +33,11 @@ namespace AmericaNews.Api
             builder.Services.AddScoped<IComentarioService, ComentarioService>();
             builder.Services.AddScoped<IRegistroService, RegistroService>();
 
+            builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+            {
+                builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+            }));
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -40,12 +47,13 @@ namespace AmericaNews.Api
                 app.UseSwaggerUI();
             }
 
+            //app cors
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
+
+            app.UseRouting();
+            app.UseCors("corsapp");
 
             app.Run();
         }
