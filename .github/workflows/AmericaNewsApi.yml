@@ -45,6 +45,8 @@ jobs:
       working-directory: ${{ env.WORKING_DIRECTORY }}
     - name: Generate Open API Specification Document
       run: swagger tofile --output "${{ env.API_IMPORT_SPECIFICATION_PATH }}" "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}\AmericaNews.Api.dll" "${{ env.API_IMPORT_VERSION }}"
+      env:
+        ASPNETCORE_ENVIRONMENT: Production
     - name: Publish Artifacts
       uses: actions/upload-artifact@v3
       with:
