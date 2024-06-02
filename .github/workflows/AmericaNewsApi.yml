@@ -44,7 +44,7 @@ jobs:
       run: dotnet tool install --global Swashbuckle.AspNetCore.Cli --version ${{ env.SWASHBUCLE_ASPNET_CORE_CLI_PACKAGE_VERSION }}
       working-directory: ${{ env.WORKING_DIRECTORY }}
     - name: Generate Open API Specification Document
-      run: dotnet swagger tofile --output "${{ env.API_IMPORT_SPECIFICATION_PATH }}" "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}\AmericaNews.Api.dll" v1 --startup "AmericaNews.Api.Program"
+      run: dotnet exec --depsfile "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}\AmericaNews.Api.deps.json" --runtimeconfig "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}\AmericaNews.Api.runtimeconfig.json" --additionalprobingpath "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}" /path/to/Microsoft.Extensions.ApiDescription.Server.dll output "${{ env.API_IMPORT_SPECIFICATION_PATH }}" "AmericaNews.Api.Program" --no-build
       env:
         ASPNETCORE_ENVIRONMENT: Production
     - name: Publish Artifacts
