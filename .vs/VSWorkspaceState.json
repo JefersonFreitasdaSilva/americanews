@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\AmericaNews.Api"
   ],
-  "SelectedNode": "\\ProjectAmericaNews.sln",
+  "SelectedNode": "\\AmericaNews.Api\\AmericaNews.Api.csproj",
   "PreviewInSolutionExplorer": false
 }
