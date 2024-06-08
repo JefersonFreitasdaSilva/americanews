@@ -4,6 +4,7 @@ using AmericaNews.Services;
 using AmericaNews.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors;
+using Microsoft.OpenApi.Models;
 using System.Security.Cryptography;
 
 namespace AmericaNews.Api
@@ -38,13 +39,21 @@ namespace AmericaNews.Api
                 builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
             }));
 
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AmericaNewsApi", Version = "v1" });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "AmericaNewsApi");
+                });
             }
 
             //app cors
