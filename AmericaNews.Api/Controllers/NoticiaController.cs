@@ -113,6 +113,27 @@ namespace AmericaNews.Api.Controllers
             }
         }
 
+        [HttpGet("search/{termo}")]
+        public async Task<ActionResult<List<NoticiaModel>>> SearchAdmin(string termo)
+        {
+            try
+            {
+                List<NoticiaModel> noticias = await _noticiaService.Search(termo, 0);
+                return Ok(noticias);
+            }
+            catch (ValidationException vex)
+            {
+                return BadRequest(new { message = vex.Message });
+            }
+            catch (KeyNotFoundException nex)
+            {
+                return NotFound(new { message = nex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Ocorreu um erro ao processar sua solicitação.", details = ex.Message });
+            }
+        }
 
         [HttpPost]
         public async Task<ActionResult<List<NoticiaModel>>> Insert([FromBody] Noticia noticia)

@@ -31,6 +31,7 @@ namespace AmericaNews.Data
                         {
                             ID = Convert.ToInt32(reader["ID"]),
                             Texto = reader["Texto"].ToString(),
+                            NomeAutor = reader["NomeAutor"].ToString(),
                             Data = Convert.ToDateTime(reader["Data"]),
                             Status = Convert.ToInt32(reader["Status"]),
                             IDUsuario = Convert.ToInt32(reader["IDUsuario"]),
@@ -53,7 +54,9 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = "SELECT * FROM Comentario WHERE IDNoticia = " + idNoticia;
+                string sql = @"SELECT c.*, u.Nome as NomeAutor FROM Comentario AS c
+                                INNER JOIN Usuario AS u ON c.IDUsuario = u.ID
+                                WHERE c.IDNoticia = " + idNoticia;
                 var result = ExecuteSelectCommands(sql);
 
                 Task<List<ComentarioModel>> comentarios = Task.FromResult(result);
@@ -71,7 +74,9 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = string.Format("SELECT * FROM Comentario WHERE IDNoticia = {0} AND Status = {1}", idNoticia, status);
+                string sql = string.Format(@"SELECT c.*, u.Nome as NomeAutor FROM Comentario AS c
+                                            INNER JOIN Usuario AS u ON c.IDUsuario = u.ID
+                                            WHERE c.IDNoticia = {0} AND c.Status = {1}", idNoticia, status);
                 var result = ExecuteSelectCommands(sql);
 
                 Task<List<ComentarioModel>> comentarios = Task.FromResult(result);
@@ -89,7 +94,9 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = "SELECT * FROM Comentario WHERE Status = " + status;
+                string sql = @"SELECT c.*, u.Nome as NomeAutor FROM Comentario AS c 
+                                INNER JOIN Usuario AS u ON c.IDUsuario = u.ID
+                                WHERE c.Status = " + status;
                 var result = ExecuteSelectCommands(sql);
 
                 Task<List<ComentarioModel>> comentarios = Task.FromResult(result);
@@ -107,7 +114,9 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = "SELECT * FROM Comentario WHERE ID = " + id;
+                string sql = @"SELECT c.*, u.Nome as NomeAutor FROM Comentario AS c
+                                INNER JOIN Usuario AS u ON c.IDUsuario = u.ID
+                                WHERE c.ID = " + id;
                 var comentario = ExecuteSelectCommands(sql);
 
                 return comentario.FirstOrDefault();

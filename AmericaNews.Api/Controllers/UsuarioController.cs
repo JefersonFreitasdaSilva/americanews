@@ -26,6 +26,27 @@ namespace AmericaNews.Api.Controllers
 
         #endregion
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UsuarioModel>> GetById(int id)
+        {
+            try
+            {
+                UsuarioModel usuario = await _usuarioService.GetById(id);
+                return Ok(usuario);
+            }
+            catch (ValidationException vex)
+            {
+                return BadRequest(new { message = vex.Message });
+            }
+            catch (KeyNotFoundException nex)
+            {
+                return NotFound(new { message = nex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Ocorreu um erro ao processar sua solicitação.", details = ex.Message });
+            }
+        }
 
         [HttpPost("login")]
         public async Task<ActionResult<UsuarioModel>> LogIn([FromBody] LoginRequest loginRequest)

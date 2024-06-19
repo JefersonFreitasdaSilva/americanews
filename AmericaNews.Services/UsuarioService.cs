@@ -60,11 +60,11 @@ namespace AmericaNews.Services
             return senhaCriptografada == senhaCadastrada;
         }
 
-        public UsuarioModel? GetById(int id)
+        public async Task<UsuarioModel> GetById(int id)
         {
             try
             {
-                var usuario = _usuarioRepository.GetById(id);
+                var usuario = await _usuarioRepository.GetById(id);
 
                 if (usuario == null)
                     throw new KeyNotFoundException(string.Format("O usuário de ID {0} não foi encontrado!", id));

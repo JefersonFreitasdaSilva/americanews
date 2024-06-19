@@ -4,6 +4,7 @@ public class ComentarioModel
 {
     public int ID { get; set; }
     public string Texto { get; set; }
+    public string NomeAutor { get; set; }
     public int Status { get; set; }
     public int IDUsuario { get; set; }
     public int IDNoticia { get; set; }

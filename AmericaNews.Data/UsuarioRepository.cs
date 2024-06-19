@@ -50,14 +50,15 @@ namespace AmericaNews.Data
             return usuarios;
         }
 
-        public UsuarioModel? GetById(int id)
+        public Task<UsuarioModel?> GetById(int id)
         {
             try
             {
                 string sql = "SELECT * FROM Usuario WHERE ID = " + id;
                 var usuarios = ExecuteSelectCommands(sql);
 
-                return usuarios.FirstOrDefault();
+                Task<UsuarioModel?> usuario = Task.FromResult(usuarios.FirstOrDefault());
+                return usuario;
             }
             catch (Exception ex)
             {

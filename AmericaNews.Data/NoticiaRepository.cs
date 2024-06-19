@@ -90,7 +90,12 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = string.Format("SELECT * FROM Noticia WHERE status = {0} AND Titulo LIKE '%{1}%'", status, termo);
+                string sql = string.Format("SELECT * FROM Noticia WHERE Titulo LIKE '%{0}%'", termo);
+
+                if (status != 0) {
+                    sql += " AND status = " + status;
+                }
+
                 var result = ExecuteSelectCommands(sql);
 
                 Task<List<NoticiaModel>> noticias = Task.FromResult(result);
