@@ -37,6 +37,7 @@ namespace AmericaNews.Data
                             Antes = reader["antes"].ToString(),
                             Depois = reader["depois"].ToString(),
                             Responsavel = Convert.ToInt32(reader["Responsavel"]),
+                            ResponsavelNome = reader["ResponsavelNome"].ToString(),
                             Data = Convert.ToDateTime(reader["Data"])
                         };
 
@@ -54,7 +55,9 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = "SELECT * FROM Registro";
+                string sql = @"SELECT r.*, u.Nome AS 'ResponsavelNome'
+                               FROM Registro AS r
+                              INNER JOIN Usuario AS u ON r.Responsavel = u.ID";
                 var result = ExecuteSelectCommands(sql);
 
                 Task<List<RegistroModel>> registros = Task.FromResult(result);
@@ -72,7 +75,10 @@ namespace AmericaNews.Data
         {
             try
             {
-                string sql = "SELECT * FROM Registro WHERE ID = " + id;
+                string sql = @"SELECT r.*, u.Nome AS 'ResponsavelNome'
+                                FROM Registro AS r
+                                INNER JOIN Usuario AS u ON r.Responsavel = u.ID
+                                WHERE r.ID = " + id;
                 var result = ExecuteSelectCommands(sql);
 
                 Task<RegistroModel?> registro = Task.FromResult(result.FirstOrDefault());

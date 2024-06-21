@@ -8,6 +8,7 @@ public class RegistroModel
     public string Antes {  get; set; }
     public string Depois { get; set; }
     public int Responsavel { get; set; }
+    public string ResponsavelNome { get; set; }
     public DateTime Data {  get; set; }
 
     public RegistroModel(string tabela,string coluna,string antes,string depois,DateTime data, int responsavel) 
